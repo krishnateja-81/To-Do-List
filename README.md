@@ -20,12 +20,12 @@ This is a simple To-Do web application built using Django. It allows users to cr
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/django-todo-app.git
+git clone https://github.com/krishnateja-81/To-Do-List
 ```
 ### 2. Navigate to the project directory
 
 ```bash
-cd django-todo-app
+cd To-Do-List
 ```
 
 ### 3. Install dependencies
