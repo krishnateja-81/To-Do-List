@@ -10,6 +10,11 @@ This is a simple To-Do web application built using Django. It allows users to cr
 - **Delete**: Users can delete a to-do item.
 - **Mark as Completed**: Users can mark a to-do item as completed.
 
+## perview 
+
+![TO Do List](./images/your_image.png)
+
+
 ## Installation
 
 ### 1. Clone the repository
