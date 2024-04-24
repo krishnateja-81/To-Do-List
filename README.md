@@ -16,7 +16,7 @@ This is a simple To-Do web application built using Django. It allows users to cr
 
 ```bash
 git clone https://github.com/your-username/django-todo-app.git
-
+```
 ### 2. Navigate to the project directory
 
 ```bash
