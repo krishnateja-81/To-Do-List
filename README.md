@@ -12,7 +12,7 @@ This is a simple To-Do web application built using Django. It allows users to cr
 
 ## perview 
 
-![TO Do List](./images/your_image.png)
+![TO Do List](https://github.com/krishnateja-81/To-Do-List/blob/master/to-do.png)
 
 
 ## Installation
