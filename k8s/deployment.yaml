@@ -1,0 +1,54 @@
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: django-todo
+  namespace: argocd-practice
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: django-todo
+
+  template:
+    metadata:
+      labels:
+        app: django-todo
+
+    spec:
+      initContainers:
+        - name: migrate-database
+          image: docker.io/library/django-todo:v2
+          imagePullPolicy: Never
+          command: ["python", "manage.py", "migrate", "--noinput"]
+          env:
+            - name: SQLITE_PATH
+              value: /data/db.sqlite3
+          volumeMounts:
+            - name: database-storage
+              mountPath: /data
+
+      containers:
+        - name: django
+          image: docker.io/library/django-todo:v2
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 8000
+
+          env:
+            - name: SQLITE_PATH
+              value: /data/db.sqlite3
+
+          volumeMounts:
+            - name: database-storage
+              mountPath: /data
+
+      volumes:
+        - name: database-storage
+          persistentVolumeClaim:
+            claimName: django-todo-pvc
+
