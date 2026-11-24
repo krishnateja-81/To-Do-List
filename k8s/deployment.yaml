@@ -24,9 +24,16 @@ spec:
           image: docker.io/library/django-todo:v3
           imagePullPolicy: Never
           command: ["python", "manage.py", "migrate", "--noinput"]
+
           env:
             - name: SQLITE_PATH
               value: /data/db.sqlite3
+            - name: DJANGO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: django-todo-secret
+                  key: DJANGO_SECRET_KEY
+
           volumeMounts:
             - name: database-storage
               mountPath: /data
@@ -44,9 +51,9 @@ spec:
               value: /data/db.sqlite3
             - name: DJANGO_SECRET_KEY
               valueFrom:
-                 secretKeyRef:
-                    name: django-todo-secret
-                    key: DJANGO_SECRET_KEY
+                secretKeyRef:
+                  name: django-todo-secret
+                  key: DJANGO_SECRET_KEY
 
           volumeMounts:
             - name: database-storage
