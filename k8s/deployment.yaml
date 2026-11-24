@@ -21,7 +21,7 @@ spec:
     spec:
       initContainers:
         - name: migrate-database
-          image: docker.io/library/django-todo:v2
+          image: docker.io/library/django-todo:v3
           imagePullPolicy: Never
           command: ["python", "manage.py", "migrate", "--noinput"]
           env:
@@ -33,7 +33,7 @@ spec:
 
       containers:
         - name: django
-          image: docker.io/library/django-todo:v2
+          image: docker.io/library/django-todo:v3
           imagePullPolicy: Never
 
           ports:
@@ -42,6 +42,11 @@ spec:
           env:
             - name: SQLITE_PATH
               value: /data/db.sqlite3
+            - name: DJANGO_SECRET_KEY
+              valueFrom:
+                 secretKeyRef:
+                    name: django-todo-secret
+                    key: DJANGO_SECRET_KEY
 
           volumeMounts:
             - name: database-storage
